@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-1gfqx#skzgu4v_yvc305$g2*c6x*p0$oojb-879t6o+med9v(s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["dinkylinky-env-dev.us-east-1.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["localhost", "dinkylinky-env-dev.us-east-1.elasticbeanstalk.com"]
 
 
 # Application definition
@@ -75,8 +76,12 @@ WSGI_APPLICATION = 'dinkylinky.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),  # 'db' is the name of the db service in docker-compose
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
