@@ -7,7 +7,6 @@ services:
       - .env
     command: >
       sh -c "
-      python manage.py makemigrations URLshortenerApp --noinput &&
       python manage.py migrate --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
@@ -22,7 +21,6 @@ services:
       - dev
     command: >
       sh -c "
-      python manage.py makemigrations URLshortenerApp --noinput &&
       python manage.py migrate --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
@@ -46,7 +44,7 @@ services:
     profiles:
       - dev
     volumes:
-      - ./db-volume:/var/lib/postgresql/data
+      - C:/users/USER/db-volume:/var/lib/postgresql/data
     restart: always
     ports:
       - "5432:5432"
