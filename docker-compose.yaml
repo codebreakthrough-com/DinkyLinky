@@ -1,10 +1,11 @@
 services:
   web:
     build: .
-    profiles:
-      - prod # Now this only runs when "prod" is explicitly used
+    env_file:
+      - .env
     command: >
       sh -c "
+      python manage.py migrate --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
       - "80:8000"
@@ -18,7 +19,8 @@ services:
       - dev
     command: >
       sh -c "
-      python manage.py migrate --noinput && 
+      python manage.py migrate --noinput &&
+      python manage.py createsuperuser --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
       - "8080:8000"
@@ -28,6 +30,9 @@ services:
       - DB_PASSWORD=postgres
       - DB_HOST=db
       - DB_PORT=5432
+      - DJANGO_SUPERUSER_PASSWORD=admin123
+      - DJANGO_SUPERUSER_USERNAME=admin2
+      - DJANGO_SUPERUSER_EMAIL=admin@admin.com
     develop:
       watch:
         - action: sync
@@ -41,7 +46,7 @@ services:
       - ./db-volume:/var/lib/postgresql/data
     restart: always
     ports:
-      - "5431:5432"
+      - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=postgres
     healthcheck:

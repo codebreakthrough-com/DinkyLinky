@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1gfqx#skzgu4v_yvc305$g2*c6x*p0$oojb-879t6o+med9v(s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "dinkylinky-env-dev.us-east-1.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "172.31.15.192"]
 
 
 # Application definition
@@ -74,13 +74,14 @@ WSGI_APPLICATION = 'dinkylinky.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USERNAME'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),  # 'db' is the name of the db service in docker-compose
+        'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
     }
 }
