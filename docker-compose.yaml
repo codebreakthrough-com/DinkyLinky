@@ -1,6 +1,8 @@
 services:
   web:
     build: .
+    profiles:
+      - prod
     env_file:
       - .env
     command: >
