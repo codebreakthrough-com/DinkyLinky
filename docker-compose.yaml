@@ -7,6 +7,7 @@ services:
       - .env
     command: >
       sh -c "
+      python manage.py makemigrations URLshortenerApp --noinput &&
       python manage.py migrate --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
@@ -21,8 +22,8 @@ services:
       - dev
     command: >
       sh -c "
+      python manage.py makemigrations URLshortenerApp --noinput &&
       python manage.py migrate --noinput &&
-      python manage.py createsuperuser --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
       - "8080:8000"
