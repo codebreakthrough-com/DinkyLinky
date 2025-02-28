@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponse
 
 from rest_framework import viewsets
@@ -15,3 +16,7 @@ class URLViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         short_url = generate_short_url()
         serializer.save(short_url=short_url)
+
+def redirect_short(request, short_code):
+    url_instance = get_object_or_404(URL, short_url=short_code)
+    return redirect(url_instance.long_url)
