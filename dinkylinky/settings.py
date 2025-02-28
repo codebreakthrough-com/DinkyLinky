@@ -24,6 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-1gfqx#skzgu4v_yvc305$g2*c6x*p0$oojb-879t6o+med9v(s'
 
+APPEND_SLASH = False
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -33,6 +35,7 @@ ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'URLshortenerApp',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,6 +57,13 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'dinkylinky.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],  # No authentication required
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',  # Open access to everyone
+    ],
+}
 
 TEMPLATES = [
     {
@@ -86,6 +96,13 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('DB_HOST'),
         'PORT': os.getenv('DB_PORT'),
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://redis:6379/1', 
     }
 }
 
@@ -130,5 +147,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-APPEND_SLASH = False

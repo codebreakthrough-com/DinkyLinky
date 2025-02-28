@@ -7,6 +7,7 @@ services:
       - .env
     command: >
       sh -c "
+      python manage.py makemigrations --noinput &&
       python manage.py migrate --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
@@ -14,6 +15,8 @@ services:
 
   webdev:
     build: .
+    volumes:
+      - .:/app
     depends_on:
       db:
         condition: service_healthy
@@ -21,6 +24,7 @@ services:
       - dev
     command: >
       sh -c "
+      python manage.py makemigrations --noinput &&
       python manage.py migrate --noinput &&
       uwsgi --ini /app/init.ini"
     ports:
@@ -32,7 +36,7 @@ services:
       - DB_HOST=db
       - DB_PORT=5432
       - DJANGO_SUPERUSER_PASSWORD=admin123
-      - DJANGO_SUPERUSER_USERNAME=admin2
+      - DJANGO_SUPERUSER_USERNAME=admin
       - DJANGO_SUPERUSER_EMAIL=admin@admin.com
     develop:
       watch:
@@ -55,3 +59,11 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
