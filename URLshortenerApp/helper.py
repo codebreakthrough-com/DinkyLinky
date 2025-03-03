@@ -44,6 +44,18 @@ def base62_encode_rand(num):
     arr.reverse()
     return ''.join(arr)
 
+def base62_decode(s):
+    base = len(BASE62)
+    strlen = len(s)
+    num = 0
+
+    idx = 0
+    for char in s:
+        power = (strlen - (idx + 1))
+        num += BASE62.index(char) * (base ** power)
+        idx += 1
+    return num
+
 def generate_short_url_rand():
     return base62_encode(random.randint(0, 1000000))
 
