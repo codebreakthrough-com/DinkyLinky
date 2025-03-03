@@ -9,6 +9,6 @@ router.register(r'urls', URLViewSet, basename='urls')
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('api/', include(router.urls)),
+    path('api/', include(router.urls), name='urls'),
     path('api/<str:short_code>', views.redirect_short, name='redirect_short'),  # Dynamic redirect
 ]

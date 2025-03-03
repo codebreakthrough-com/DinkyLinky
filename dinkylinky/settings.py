@@ -29,7 +29,7 @@ APPEND_SLASH = False
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "44.198.26.223", "172.31.15.192"]
+ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "44.198.26.223", "172.31.15.192", "3.237.101.65"]
 
 
 # Application definition
@@ -124,7 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
