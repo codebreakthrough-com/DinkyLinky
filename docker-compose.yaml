@@ -63,12 +63,12 @@ services:
       timeout: 5s
       retries: 5
 
-  redis:
-    profiles:
-      - dev
-    image: redis:latest
-    ports:
-      - "6379:6379"
+  # redis:
+  #   profiles:
+  #     - dev
+  #   image: redis:latest
+  #   ports:
+  #     - "6379:6379"
 
 volumes:
   postgres_data:

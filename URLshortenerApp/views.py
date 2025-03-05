@@ -6,11 +6,11 @@ from rest_framework import status
 from rest_framework import viewsets
 from .models import URL
 from .serializers import URLSerializer
-from .helper import generate_short_url_rand, base62_encode, base62_decode
+from .helper import base62_encode, base62_decode
 
 
 def home(request):
-    return HttpResponse('<h1>home</h1>')
+    return HttpResponse('<h1>Hello world</h1>')
 
 
 class URLViewSet(viewsets.ModelViewSet):
