@@ -10,7 +10,7 @@ from .helper import base62_encode, base62_decode
 
 
 def home(request):
-    return HttpResponse('<h1>Hello world</h1>')
+    return HttpResponse('<h1>Home</h1>')
 
 
 class URLViewSet(viewsets.ModelViewSet):
