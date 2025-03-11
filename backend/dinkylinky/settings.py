@@ -31,12 +31,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "44.198.26.223", "172.31.15.192", "3.237.101.65"]
 
+# CORS
+CORS_ALLOWED_ORIGIN = ["http://localhost:5173"]
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = ["GET", "POST", "OPTIONS"]
 
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
     'URLshortenerApp',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +51,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
