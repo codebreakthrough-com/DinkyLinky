@@ -29,11 +29,11 @@ APPEND_SLASH = False
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "44.198.26.223", "172.31.15.192", "3.237.101.65"]
+ALLOWED_HOSTS = ["localhost", "dinkylinky-dev.us-east-1.elasticbeanstalk.com", "44.198.26.223", "172.31.15.192", "3.237.101.65", "*"]
 
 # CORS
 CORS_ALLOWED_ORIGIN = ["http://localhost:5173", "http://localhost:3000"]
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_METHODS = ["GET", "POST", "OPTIONS"]
 
 # Application definition
