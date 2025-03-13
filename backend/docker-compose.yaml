@@ -63,7 +63,7 @@ services:
     profiles:
       - dev
     volumes:
-      - C:/users/USER/db-volume:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     restart: always
     ports:
       - "5432:5432"
