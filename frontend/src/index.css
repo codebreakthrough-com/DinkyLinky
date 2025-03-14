@@ -11,6 +11,16 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+}
+
+#root {
+
+  min-height: 200px;
+}
+
+#header { 
+  color: rgb(230, 230, 230);
 }
 
 a {
